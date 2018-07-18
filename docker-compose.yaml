@@ -1,0 +1,24 @@
+version: '2'
+services:
+    app:
+      image: data-example:0.0.1-SNAPSHOT
+#      environment:
+#        - "5672:5672"
+#        - "27017:27017"
+
+    rabbitmq:
+      image: rabbitmq:management
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+      environment:
+            RABBITMQ_DEFAULT_PASS: pass
+            RABBITMQ_DEFAULT_USER: user
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
+        ports:
+            - "27017:27017"
